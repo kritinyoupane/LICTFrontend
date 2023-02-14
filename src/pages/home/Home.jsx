@@ -1,5 +1,7 @@
 import Sidebar from "../../Components/sidebar/Sidebar"
 import Navbar from "../../Components/navbar/Navbar"
+import Chart from "../../Components/charts/Chart";
+import Featured from "../../Components/featured/Featured";
 import "./Home.scss"
 
 const Home = () => {
@@ -8,7 +10,10 @@ const Home = () => {
       <Sidebar/>
       <div className="homecontainer">
         <Navbar/>
-        homecontainer
+        <div className="charts">
+          <Featured />
+          <Chart title="Last 6 Months (Check In)" aspect={2 / 1} />
+        </div>
       </div>
     </div>
   )
