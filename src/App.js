@@ -1,8 +1,9 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import Neww from "./pages/new/New";
+import New from "./pages/new/New";
 import Single from "./pages/single/Single";
 import List from "./pages/list/List";
+import Notification from "./pages/notification/Notification";
 import "./style/dark.scss"
 import { useContext } from "react";
 import { DarkModeContext } from "./context/DarkModeContext";
@@ -23,14 +24,16 @@ function App() {
           <Route path="/">
           <Route index element={<Home/>}/>
           <Route path ="login" element={<Login/>}/>
+          <Route path ="notification" element={<Notification/>}/>
           <Route path ="users">
             <Route index element={<List/>}/>
-            <Route path="new" element={<Neww/>}/>
+            <Route path="new" element={<New/>}/>
             <Route path=":userId" element={<Single/>}/>
           </Route>
+          <Route path="single" element={<Single/>}/>
           <Route path ="products">
             <Route index element={<List/>}/>
-            <Route path="new" element={<Neww/>}/>
+            <Route path="new" element={<New/>}/>
             <Route path=":productId" element={<Single/>}/>
           </Route>
           </Route>

@@ -3,7 +3,7 @@ export const userColumns = [
     {
       field: "user",
       headerName: "User",
-      width: 230,
+      width: 180,
       renderCell: (params) => {
         return (
           <div className="cellWithImg">
@@ -16,18 +16,44 @@ export const userColumns = [
     {
       field: "email",
       headerName: "Email",
-      width: 230,
+      width: 180,
     },
   
     {
-      field: "age",
-      headerName: "Age",
-      width: 100,
+      field: "checkin",
+      headerName: "Check In",
+      width: 160,
+      renderCell: (params) => {
+        return (
+          <div className="cellWithCheckIn">
+            {params.row.checkindate} 
+            <div className="time">
+                {params.row.checkintime}
+            </div> 
+          </div>
+        );
     },
+},
+
+    {
+        field: "checkout",
+        headerName: "Check Out",
+        width: 160,
+        renderCell: (params) => {
+            return (
+              <div className="cellWithCheckOut">
+                {params.row.checkoutdate}
+                <div className="time"> 
+                   {params.row.checkouttime}
+                </div>
+              </div>
+            );
+        },
+      },
     {
       field: "status",
       headerName: "Status",
-      width: 160,
+      width: 150,
       renderCell: (params) => {
         return (
           <div className={`cellWithStatus ${params.row.status}`}>
@@ -46,7 +72,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       status: "approved",
       email: "1snow@gmail.com",
-      age: 35,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 2,
@@ -54,7 +83,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "2snow@gmail.com",
       status: "not approved",
-      age: 42,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 3,
@@ -62,7 +94,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "3snow@gmail.com",
       status: "pending",
-      age: 45,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 4,
@@ -70,7 +105,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "4snow@gmail.com",
       status: "approved",
-      age: 16,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 5,
@@ -78,7 +116,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "5snow@gmail.com",
       status: "not approved",
-      age: 22,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 6,
@@ -86,7 +127,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "6snow@gmail.com",
       status: "approved",
-      age: 15,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 7,
@@ -94,7 +138,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "7snow@gmail.com",
       status: "not approved",
-      age: 44,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 8,
@@ -102,7 +149,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "8snow@gmail.com",
       status: "approved",
-      age: 36,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 9,
@@ -110,7 +160,10 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "snow@gmail.com",
       status: "pending",
-      age: 65,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
     {
       id: 10,
@@ -118,6 +171,9 @@ export const userColumns = [
       img: "https://images.pexels.com/photos/1820770/pexels-photo-1820770.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "snow@gmail.com",
       status: "approved",
-      age: 65,
+      checkindate: "2023-02-14",
+      checkintime: "13:00",
+      checkoutdate: "2023-02-14",
+      checkouttime: "15:00"
     },
   ];

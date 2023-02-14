@@ -1,5 +1,6 @@
 import "./Navbar.scss"
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 
 const Navbar = () => {
   return (
@@ -7,6 +8,10 @@ const Navbar = () => {
       <div className="wrapper">
         <input type="text" placeholder="Search..." className="search" />
         <SearchOutlinedIcon className="search"/>
+        <li>
+            <SettingsOutlinedIcon className="settingsIcon"/>
+            <span>Settings</span>
+          </li>
       </div>
     </div>
       
