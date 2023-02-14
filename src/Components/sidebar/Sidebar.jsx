@@ -9,7 +9,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import Brightness5Icon from '@mui/icons-material/Brightness5';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ReactRoundedImage from "react-rounded-image";
-import MyPhoto from "../../images/registration.jpg";
+import MyPhoto from "../../images/re.jpeg";
 import { DarkModeContext } from "../../context/DarkModeContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
@@ -27,7 +27,9 @@ const Sidebar = () => {
                       roundedSize="0"
                       borderWidth ="3"
                       borderRadius="50%"/>
-          <span className="identity">Kriti Nyoupane</span>
+          <span className="identity">
+            <h3>John Doe</h3>
+          </span>
           <p className="identity">Admin</p>
         </div>
         <hr/>

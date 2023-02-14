@@ -1,8 +1,7 @@
 import "../datatable/Datatable.scss"
 import { DataGrid } from '@mui/x-data-grid';
-import { userColumns, userRows } from "../../datatablesource";
 
-const Datatable = () => {
+const Datatable = ({userColumns,userRows}) => {
     const actionColumn = [
     {
       field: "action",

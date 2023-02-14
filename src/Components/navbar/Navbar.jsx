@@ -10,7 +10,6 @@ const Navbar = () => {
         <SearchOutlinedIcon className="search"/>
         <li>
             <SettingsOutlinedIcon className="settingsIcon"/>
-            <span>Settings</span>
           </li>
       </div>
     </div>
