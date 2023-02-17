@@ -1,11 +1,13 @@
 import "../login/Login.scss";
 import { Link } from "react-router-dom";
+import Navbar from "../../Components/navbar/Navbar";
 
 
 const Login = () => {
 
   return (
     <div className="login">
+      <Navbar/>
       <div className="loginContainer">
         <div className="top">
           <h1>Admin pannel</h1>
@@ -23,7 +25,6 @@ const Login = () => {
                 <input type="password" placeholder=""/>
               </div>
               <button>Log In</button>
-              <span> Or </span>
               <Link to="/registration" style={{ textDecoration: "none" }}>
               <button>Sign Up</button>
               </Link>

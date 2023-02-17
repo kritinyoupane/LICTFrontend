@@ -1,5 +1,5 @@
 export const userColumns = [
-    { field: "id", headerName: "ID", width: 70 },
+    { field: "id", headerName: "ID", width: 70},
     {
       field: "user",
       headerName: "User",
@@ -22,7 +22,7 @@ export const userColumns = [
     {
       field: "checkin",
       headerName: "Check In",
-      width: 160,
+      width: 150,
       renderCell: (params) => {
         return (
           <div className="cellWithCheckIn">
@@ -38,7 +38,7 @@ export const userColumns = [
     {
         field: "checkout",
         headerName: "Check Out",
-        width: 160,
+        width: 150,
         renderCell: (params) => {
             return (
               <div className="cellWithCheckOut">
@@ -53,7 +53,7 @@ export const userColumns = [
     {
       field: "status",
       headerName: "Status",
-      width: 150,
+      width: 140,
       renderCell: (params) => {
         return (
           <div className={`cellWithStatus ${params.row.status}`}>

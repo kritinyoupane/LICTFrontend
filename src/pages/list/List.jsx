@@ -12,7 +12,7 @@ const List = () => {
       <Sidebar/>
       <div className="listContainer">
         <Navbar/>
-        <Datatable userColumns={userColumns} userRows={userRows}/>
+          <Datatable userColumns={userColumns} userRows={userRows}/>
       </div>
     </div>
   )
