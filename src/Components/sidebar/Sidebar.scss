@@ -2,7 +2,7 @@
     flex:1;
     padding: 10px;
     border-right: 0.5px solid rgb(198, 195, 195);
-    min-height: 100vh;
+    min-height: 90vh;
     background-color: white;
     .top{
         height: 50px;
@@ -11,9 +11,6 @@
         text-align: center;
         padding-left: 55px;
 
-        // ReactRoundedImage{
-        //     padding:100px;
-        // }
         .identity{
             display: flexbox;
             text-align: center;
@@ -33,6 +30,7 @@
         }
     }
     li{
+        color: black;
         display:flex;
         align-items: center;
         padding: 18px;

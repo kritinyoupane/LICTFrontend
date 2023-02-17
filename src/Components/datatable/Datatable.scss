@@ -1,5 +1,5 @@
 .datatable {
-    height: 600px;
+    height: 500px;
     padding: 20px;
     
     .datatableTitle{
@@ -35,12 +35,32 @@
         margin-right: 20px;
       }
     }
+    .cellWithCheckIn {
+        display: inline-block;
+        align-items: center;
+        justify-content: center;
+        .time{
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+        }
+      }
+      .cellWithCheckOut {
+        display: inline-block;
+        align-items: center;
+
+        .time{
+            justify-content: center;
+            font-weight: 800;
+            font-size: 12px;
+        }
+      }
   
     .cellWithStatus {
       padding: 5px;
       border-radius: 5px;
   
-      &.active {
+      &.approved {
         background-color: rgba(0, 128, 0, 0.05);
         color: green;
       }
@@ -48,7 +68,7 @@
         background-color: rgba(255, 217, 0, 0.05);
         color: goldenrod;
       }
-      &.passive {
+      &.not.approved {
         background-color: rgba(255, 0, 0, 0.05);
         color: crimson;
       }

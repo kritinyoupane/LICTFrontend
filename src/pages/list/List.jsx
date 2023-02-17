@@ -3,6 +3,7 @@ import "../list/List.scss"
 import Sidebar from '../../Components/sidebar/Sidebar'
 import Navbar from '../../Components/navbar/Navbar'
 import Datatable from '../../Components/datatable/Datatable'
+import { userRows,userColumns } from "../../datatablesource"
 
 
 const List = () => {
@@ -11,7 +12,7 @@ const List = () => {
       <Sidebar/>
       <div className="listContainer">
         <Navbar/>
-        <Datatable/>
+        <Datatable userColumns={userColumns} userRows={userRows}/>
       </div>
     </div>
   )

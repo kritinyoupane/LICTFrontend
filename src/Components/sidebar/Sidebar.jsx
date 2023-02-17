@@ -4,15 +4,15 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
 import NotificationsActiveOutlinedIcon from '@mui/icons-material/NotificationsActiveOutlined';
 import UploadFileOutlinedIcon from '@mui/icons-material/UploadFileOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import Brightness5Icon from '@mui/icons-material/Brightness5';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ReactRoundedImage from "react-rounded-image";
-import MyPhoto from "../../images/registration.jpg";
+import MyPhoto from "../../images/re.jpeg";
 import { DarkModeContext } from "../../context/DarkModeContext";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -22,44 +22,50 @@ const Sidebar = () => {
             <ReactRoundedImage
                       image={MyPhoto}
                       roundedColor="#333"
-                      imageWidth="60"
-                      imageHeight="60"
-                      roundedSize="5"
-                      borderWidth ="5"
-                      borderRadius="50"/>
-          <span className="identity">Kriti Nyoupane</span>
+                      imageWidth="80"
+                      imageHeight="80"
+                      roundedSize="0"
+                      borderWidth ="3"
+                      borderRadius="50%"/>
+          <span className="identity">
+            <h3>John Doe</h3>
+          </span>
           <p className="identity">Admin</p>
         </div>
         <hr/>
         <div className="center">
-          <li>
-          <DashboardIcon className="icon"/>
-            <span>Dashboard</span>
-          </li>
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <li>
+            <DashboardIcon className="icon"/>
+              <span>Dashboard</span>
+            </li>
+          </Link>
           <li>
             <ArrowDropDownOutlinedIcon className="icon"/>
             <span>Model Selection</span>
           </li>
-          <li>
-            <NotificationsActiveOutlinedIcon className="icon"/>
-            <span>Notification</span>
-          </li>
-          <li>
-            <PersonOutlineOutlinedIcon className="icon"/>
-            <span>Users</span>
-          </li>
+          <Link to="/notification" style={{ textDecoration: "none" }}>
+            <li>
+              <NotificationsActiveOutlinedIcon className="icon"/>
+              <span>Notification</span>
+            </li>
+          </Link>
+          <Link to="/users" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineOutlinedIcon className="icon"/>
+              <span>Users</span>
+            </li>
+          </Link>
           <li>
             <UploadFileOutlinedIcon className="icon"/>
             <span>Upload</span>
           </li>
-          <li>
-            <AccountCircleOutlinedIcon className="icon"/>
-            <span>Profile</span>
-          </li>
-          <li>
-            <SettingsOutlinedIcon className="icon"/>
-            <span>Settings</span>
-          </li>
+          <Link to="/single" style={{ textDecoration: "none" }}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon"/>
+              <span>Profile</span>
+            </li>
+          </Link>
           <li>
             <LogoutOutlinedIcon className="icon"/>
             <span>Logout</span>

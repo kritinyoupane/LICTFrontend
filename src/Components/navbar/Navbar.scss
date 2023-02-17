@@ -5,14 +5,44 @@
     align-items: center;
     font-size: 14px;
     color: gray;
+    justify-content: right;
+    margin-right: 25px;
     .wrapper{
         display:flex;
         justify-content: space-between;
+        .icon{
+          margin-top: 2px;
+          align-items: center;
+          font-size: 18px;
+          color: #7451f8;   
+          padding: 5px;   
+        }
+        .search {
+            display: flex;
+            align-items: center;
+            border: 0.5px solid lightgray;
+            padding: 5px;
+      
+            input {
+              border: none;
+              outline: none;
+              background: transparent;
+      
+              &::placeholder {
+                font-size: 12px;
+              }
+            }
+          }
+    span{
+        font-size: 15px;
+        font-weight: 600;
+        margin-left: 10px;
     }
-    .search{
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        margin-left: 5px;
-    }
+    // .settingsIcon{
+    //     margin-top: 5px;
+    //     align-items: center;
+    //     font-size: 18px;
+    //     color: #7451f8;
+    // }
+}
 }
