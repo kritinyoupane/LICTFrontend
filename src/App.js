@@ -1,5 +1,6 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
+import Registration from "./pages/registration/Registration"
 import New from "./pages/new/New";
 import Single from "./pages/single/Single";
 import List from "./pages/list/List";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/">
           <Route index element={<Home/>}/>
           <Route path ="login" element={<Login/>}/>
+          <Route path ="registration" element={<Registration/>}/>
           <Route path ="notification" element={<Notification/>}/>
           <Route path ="users">
             <Route index element={<List/>}/>
