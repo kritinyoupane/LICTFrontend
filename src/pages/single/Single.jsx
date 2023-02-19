@@ -1,13 +1,24 @@
+import { useContext, useState } from "react";
 import "../single/Single.scss";
 import Sidebar from "../../Components/sidebar/Sidebar";
 import Navbar from "../../Components/navbar/Navbar";
+import AuthContext from "../../context/AuthContext";
+import { useParams } from "react-router-dom";
 
 const Single = () => {
+  const {userInfo} = useContext(AuthContext)
+  const [userDetails, setUserDetails] = useState(userInfo);
+  const { userId} = useParams()
+  console.log(userId)
+
+  const {fullName, email, phoneNumber, address, isSuperUser, position} = userDetails
+  
   return (
     <div className="single">
       <Sidebar />
       <div className="singleContainer">
         <Navbar />
+        Need to implement for viewing other user details
         <div className="top">
           <div className="left">
             <div className="editButton">Edit</div>
@@ -19,24 +30,24 @@ const Single = () => {
                 className="itemImg"
               />
               <div className="details">
-                <h1 className="itemTitle">Kriti Nyoupane</h1>
+                <h1 className="itemTitle">{fullName}</h1>
                 <div className="detailItem">
                   <span className="itemKey">Email:</span>
-                  <span className="itemValue">nyoupanekriti@gmail.com</span>
+                  <span className="itemValue">{email}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Phone:</span>
-                  <span className="itemValue">9867221345</span>
+                  <span className="itemValue">{phoneNumber}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Address:</span>
                   <span className="itemValue">
-                    Pulchowk Lalitpur
+                    {address}
                   </span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Position</span>
-                  <span className="itemValue">Admin</span>
+                  <span className="itemValue">{position}</span>
                 </div>
               </div>
             </div>

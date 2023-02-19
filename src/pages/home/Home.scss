@@ -3,5 +3,15 @@
 
     .homecontainer{
         flex: 6;
+        button {
+            width: 150px;
+            padding: 10px;
+            border: none;
+            background-color: teal;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 10px;
+        }
     }
 }

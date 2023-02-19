@@ -1,5 +1,5 @@
 import axios from "axios";
-import { logout } from "./loginHelper";
+import { clearUserInfo } from "./loginHelper";
 
 export const baseURL = "http://127.0.0.1:8000/";
 
@@ -9,7 +9,8 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   function (config) {
-    const token = JSON.parse(localStorage.getItem("token"));
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    const token = userInfo?.token;
     console.log(token)
     if (token) {
       config.headers["Authorization"] = "Token " + token;
@@ -30,7 +31,7 @@ axiosInstance.interceptors.response.use(
   function (error) {
     console.log(error.response)
     if([401,403].indexOf(error.response?.status) !== -1) {
-       // logout()
+       clearUserInfo()
     }
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
