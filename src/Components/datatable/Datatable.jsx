@@ -1,22 +1,28 @@
 import "../datatable/Datatable.scss"
 import { DataGrid } from '@mui/x-data-grid';
-
+import { useNavigate } from "react-router-dom";
 const Datatable = ({userColumns,userRows}) => {
+  const navigate = useNavigate()
     const actionColumn = [
     {
       field: "action",
       headerName: "Action",
-      width: 180,
+      width: 150,
       renderCell:() => {
         return(
           <div className="cellAction">
-            <div className="viewButton"> View </div>
-            <div className="deleteButton"> Delete </div>
+            <button className="approveButton"> Approve </button>
+            <button className="rejectButton"> Reject </button>
           </div>
         )
       }
     }
     ]
+    const handleRowClick = (row)=>{
+      console.log(row.id)
+      navigate(`/users/${row.id}`)
+      
+    }
     return (
         <div className="datatable">
           <DataGrid
@@ -25,7 +31,7 @@ const Datatable = ({userColumns,userRows}) => {
             columns={userColumns.concat(actionColumn)}
             pageSize={6}
             rowsPerPageOptions={[6]}
-            checkboxSelection
+            onRowClick={handleRowClick}
           />
         </div>
     )

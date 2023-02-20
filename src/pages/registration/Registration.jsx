@@ -1,9 +1,11 @@
+import Navbar from "../../Components/navbar/Navbar";
 import "../registration/Registration.scss";
 
 const Registration = () => {
 
   return (
     <div className="registration">
+      <Navbar/>
       <div className="registrationContainer">
         <div className="top">
           <h1>Sign Up</h1>
