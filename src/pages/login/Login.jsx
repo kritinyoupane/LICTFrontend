@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import axiosInstance from "../../helper/Axios";
 import AuthContext from "../../context/AuthContext";
 import {userInfoTransform} from "../../helper/dataTransform"
+import Navbar from "../../Components/navbar/Navbar";
 
 
 const Login = () => {
@@ -12,7 +13,7 @@ const Login = () => {
   const [error, setError] = useState("")
   const {setUserInfo} = useContext(AuthContext)
   const navigate = useNavigate()
-  const [redirectLink, setRedirectLink] = useState("/")
+  const [redirectLink, setRedirectLink] = useState("/home")
 
   useEffect(()=>{
     const href = window.location.href;
@@ -42,6 +43,7 @@ const Login = () => {
 
   return (
     <div className="login">
+      <Navbar/>
       <div className="loginContainer">
         <div className="top">
           <h1>Admin pannel</h1>

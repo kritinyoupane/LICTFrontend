@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../../helper/Axios';
+import Navbar from "../../Components/navbar/Navbar";
 import "../registration/Registration.scss";
 
 const Registration = () => {
@@ -35,6 +36,7 @@ const Registration = () => {
 
   return (
     <div className="registration">
+      <Navbar/>
       <div className="registrationContainer">
         <div className="top">
           <h1>Sign Up</h1>
