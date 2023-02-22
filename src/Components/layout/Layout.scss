@@ -1,0 +1,10 @@
+.layout-container{
+    display: flex;
+
+    .container{
+        flex: 6;
+        .content{
+            padding: 10px;
+        }
+    }
+}

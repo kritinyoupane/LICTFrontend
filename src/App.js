@@ -16,6 +16,8 @@ import {
 } from "react-router-dom";
 import PrivateRoute from "./Components/PrivateRoute";
 import AccessDenied from "./pages/accessDenied/AccessDenied";
+import Editor from "./pages/editor/Editor";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -43,6 +45,9 @@ function App() {
           </Route>
           </Route>
           <Route path="accessDenied" element={<AccessDenied />}/>
+
+          <Route path="editor" element={<Editor />}/>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>

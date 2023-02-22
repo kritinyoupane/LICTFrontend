@@ -10,13 +10,18 @@ const PrivateRoute = ({onlyAdmin, children}) => {
     const pathAndParams = window.location.href.split(host+"/")[1]
     const loginRedirectUrl = `/login?redirect_to=${pathAndParams}`
 
-    if (userInfo) {
-      if (!onlyAdmin) {
-        return children;
-      }
-      return isSuperUser ? children : <Navigate to="/accessDenied" />
+    // if (userInfo) {
+    //   if (!onlyAdmin) {
+    //     return children;
+    //   }
+    //   return isSuperUser ? children : <Navigate to="/accessDenied" />
       
+    // }
+
+    if(userInfo && isSuperUser){
+      return children;
     }
+
     return <Navigate to={loginRedirectUrl} />
 
 }

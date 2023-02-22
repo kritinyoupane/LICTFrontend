@@ -1,0 +1,24 @@
+.home{
+    display: flex;
+
+    .homecontainer{
+        flex: 6;
+        .main{
+            padding: 10px;
+            height: 95%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            .side-panel{
+                width: 30%;
+                height: 100%;
+                padding: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
+                border: solid;
+                border-width: 1px;
+                border-color: #ccc;
+            }
+        }
+    }
+}
