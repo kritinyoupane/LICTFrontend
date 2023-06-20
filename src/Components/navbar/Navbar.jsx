@@ -20,12 +20,12 @@ const Navbar = () => {
           <span>
               <SettingsOutlinedIcon className="icon"/>
           </span>}
-          {!isLogin && 
+          {/* {!isLogin && 
           <div>
             <a href="/" className='navBtn'>About</a>
             <a href="/login" className='navBtn'>Log In</a>
             <a href="/registration" className='navBtn'>Sign Up</a>
-          </div>}
+          </div>} */}
         </div>
       </div> 
     </div>

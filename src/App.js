@@ -38,7 +38,7 @@ function App() {
           <Route path ="notification" element={<PrivateRoute ><Notification/></PrivateRoute>}/>
           <Route path="settings" element={<PrivateRoute> <Settings /> </PrivateRoute>} />
           <Route path ="users">
-            <Route index element={<PrivateRoute><List/></PrivateRoute>}/>
+            <Route index element={<PrivateRoute onlyAdmin={true}><List/></PrivateRoute>}/>
             <Route path="new" element={<New/>}/>
             <Route path=":userId" element={<PrivateRoute><Profile /></PrivateRoute> }/>
           </Route>

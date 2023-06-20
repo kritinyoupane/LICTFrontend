@@ -12,7 +12,7 @@ const AccessDenied = () => {
       <div className="homecontainer">
         <Navbar />
         <h1>Access Denied</h1>
-        <h2>Return to <Link to="/">Homepage</Link></h2>
+        <h2>Return to <Link to="/editor">Homepage</Link></h2>
         
       </div>
     </div>

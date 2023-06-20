@@ -6,7 +6,7 @@ export const userInfoTransform = (data) => {
     return({
         id: user.id,
         email: user.email,
-        approvalStatus: user.email,
+        approvalStatus: user.approvalStatus,
         isSuperUser: user.is_superuser,
         userName: user.username,
         token: token,

@@ -26,13 +26,23 @@ const Registration = () => {
         password,
         password2,
       };
+      try{
       const response = await axiosInstance.post("/auth/register", body);
+      
+      console.log(response)
       if(response.statusText === "OK"){
         window.alert(response.data.message)
         navigate("/login")
       }
-      console.log(response)
+    }catch(e){
+      window.alert("Error: Details in console")
+      console.log(e)
     }
+    }
+  }
+
+  const handleBack = () => {
+    navigate('/login')
   }
 
 
@@ -40,11 +50,6 @@ const Registration = () => {
 
   return(<div>
     <div className="decor">
-            <obj1></obj1>
-            <obj2></obj2>
-            <obj3></obj3>
-            <obj4></obj4>
-            <obj5></obj5>
           </div>
           <div className='loginBox'>
             <div className='regSection'>
@@ -56,23 +61,23 @@ const Registration = () => {
                 <div className='heading'>
                   Firstname
                 </div>
-                <input className='inputSection' id='fname' type='name' placeholder='Firstname'>  
+                <input className='inputSection' id='fname' type='name' placeholder='Firstname' value={firstName} onChange={(e)=>setFirstName(e.target.value)}>  
                 </input>
                 <div className='heading'>
                   Lastname
                 </div>
-                <input className='inputSection' id='lname' type='name' placeholder='Lastname'>  
+                <input className='inputSection' id='lname' type='name' placeholder='Lastname' value={lastName} onChange={(e)=>setLastName(e.target.value)}>  
                 </input>
                 </div>
                 <div className='heading'>
                   Username
                 </div>
-                <input className='inputSection' id='name' type='name' placeholder='Username'>  
+                <input className='inputSection' id='name' type='name' placeholder='Username' value={userName} onChange={(e)=>setUserName(e.target.value)}>  
                 </input>
                 <div className='heading'>
                   Email
                 </div>
-                <input className='inputSection' id='email' type='email' placeholder='email'>  
+                <input className='inputSection' id='email' type='email' placeholder='email' value={email} onChange={(e)=>setEmail(e.target.value)}>  
                 </input>
                 <div className='heading'>
                   Password
@@ -82,12 +87,13 @@ const Registration = () => {
                 <div className='heading'>
                   Confirm password
                 </div>
-                <input className='inputSection'id='password2' type='password' value={password2} onChange={(e) => setPassword(e.target.value)}>  
+                <input className='inputSection'id='password2' type='password' value={password2} onChange={(e) => setPassword2(e.target.value)}>  
                 </input>
               </div>
               <div className='buttons'>
-                <button className='login'>Login</button>
-                <button className="signin">Signup</button>
+                <button className="signin" onClick={handleSubmit}>Signup</button>
+                <button className="login" onClick={handleBack}>Back</button>
+
               </div>
             </div>
             <div className='section'>
@@ -104,54 +110,6 @@ const Registration = () => {
             </div>
             </div>
   </div>)
-
-
-
-
-
-
-  return (
-    <div className="registration">
-      <Navbar/>
-      <div className="registrationContainer">
-        <div className="top">
-          <h1>Sign Up</h1>
-          <h3> It's quick and easy </h3>
-        </div>
-        <hr>
-        </hr>
-          <div className="bottom">
-            <form>
-              <div className="formInput">
-                <label>First Name</label>
-                <input type="text" placeholder="John" value={firstName} onChange={(e)=>setFirstName(e.target.value)}/>
-              </div>
-              <div className="formInput">
-              <label>Last Name</label>
-              <input type="text" placeholder="Doe" value={lastName} onChange={(e)=>setLastName(e.target.value)} />
-              </div>
-              <div className="formInput">
-              <label>User Name</label>
-              <input type="text" placeholder="Doe" value={userName} onChange={(e)=>setUserName(e.target.value)} />
-              </div>
-              <div className="formInput">
-                <label>Email</label>
-                <input type="email" placeholder="johndoe@gmail.com" value={email} onChange={(e)=>setEmail(e.target.value)}/>
-              </div>
-              <div className="formInput">
-                <label>Password</label>
-                <input type="password" placeholder="" value={password} onChange={(e)=>setPassword(e.target.value)}/>
-              </div>
-              <div className="formInput">
-                <label>Confirm Password</label>
-                <input type="password" placeholder="" value={password2} onChange={(e)=>setPassword2(e.target.value)}/>
-              </div>
-              <button onClick={handleSubmit}>Register</button>
-            </form> 
-          </div>
-        </div>
-      </div>
-  )
 }
 
 export default Registration;

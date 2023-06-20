@@ -18,8 +18,23 @@ const PrivateRoute = ({onlyAdmin, children}) => {
       
     // }
 
-    if(userInfo && isSuperUser){
-      return children;
+    if (userInfo) {
+        console.log(userInfo);
+        switch (userInfo.approvalStatus) {
+            case "Approved":
+                if (!onlyAdmin) {
+                    return children;
+                }
+                return isSuperUser ? children : <Navigate to="/accessDenied" />;
+            case "Pending":
+                return <>Pending</>;
+
+            case "Rejected":
+                return <>Rejected</>;
+
+            default:
+                return <>Error</>;
+        }
     }
 
     return <Navigate to={loginRedirectUrl} />

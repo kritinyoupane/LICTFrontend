@@ -49,20 +49,14 @@ const Sidebar = () => {
           </span>
           <p className="identity">{userInfo && userInfo.position ? userInfo.position : "Position"}</p>
         </div>
-        <hr/>
         <div className="center">
-          <Link to="/notification" style={{ textDecoration: "none" }} className='navigation'>
-            <li>
-              <NotificationsActiveOutlinedIcon className="icon"/>
-              <span>User Request</span>
-            </li>
-          </Link>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          {userInfo && userInfo.isSuperUser && (<Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineOutlinedIcon className="icon"/>
               <span>Users</span>
             </li>
-          </Link>
+          </Link>)}
+          
           <Link to="/editor" style={{ textDecoration: "none" }}>
             <li>
               <EventNoteIcon className="icon"/>
