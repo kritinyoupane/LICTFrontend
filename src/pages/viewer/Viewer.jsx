@@ -10,11 +10,11 @@ const Viewer = () => {
         const response = await axiosInstance.get(`api/examQuestionsByUser`);
         console.log(response)
         if(response){
-            console.log(response.data.results.slice(0, 20))
-            setArray(response.data.results.slice(0, 20))
+            console.log(response.data.results)
+            setArray(response.data.results.slice(0, 100))
         }
     })()
-  })
+  }, [])
     return (
         <>
             <Layout>

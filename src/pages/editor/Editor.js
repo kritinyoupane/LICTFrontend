@@ -6,7 +6,8 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import { Tab, Tabs } from "@mui/material";
+import { Box, Modal, Tab, Tabs, Typography } from "@mui/material";
+import axiosInstance from "../../helper/Axios";
 
 const modules = {
     toolbar: [
@@ -28,20 +29,25 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
     const [paraphraseResponse, setParaphraseResponse] = useState(['Question1', 'Question2', 'Question3'])
     const [questionText, setQuestionText] = useState("");
     const [tabValue, setTabValue] = useState(0);
+    const [viewDetails, setViewDetails] = useState(false)
+    const [questionPaper, setQuestionPaper] = useState([])
 
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
     };
 
     const paraphraseQuestion = async () => {
-        let textToParaphrase = getSelectedText();
-        if(!textToParaphrase){
-            textToParaphrase = questionText
+        try {
+            let textToParaphrase = getSelectedText();
+            if (!textToParaphrase) {
+                textToParaphrase = questionText;
+            }
+
+            // TODO Get API Key from backend, call to OPENAI, Store results in paraphraseResponse
+        } catch (e) {
+            console.log("click on editor");
         }
-
-        // TODO Get API Key from backend, call to OPENAI, Store results in paraphraseResponse 
-
-    }
+    };
 
     const queryQuestion = async (question) => {
         try {
@@ -79,12 +85,16 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
     }, [value]);
 
     const replaceQuestion = (newQuestion) => {
-        const selectedText = getSelectedText();
-        if (selectedText) {
-            replaceSelection(newQuestion);
-        } else {
-            const newValue = value.replace(questionText, newQuestion);
-            setText(newValue);
+        try {
+            const selectedText = getSelectedText();
+            if (selectedText) {
+                replaceSelection(newQuestion);
+            } else {
+                const newValue = value.replace(questionText, newQuestion);
+                setText(newValue);
+            }
+        } catch (e) {
+            console.log("Click on Editor");
         }
     };
 
@@ -99,6 +109,40 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
             queryQuestion(selectedText);
         }
     };
+
+    const viewQuestionsFromSamePaper = async(question) => {
+        try{
+            console.log(question)
+            var formdata = new FormData();
+            formdata.append("examYear", question.examYear);
+            formdata.append("examinationType", question.examinationType);
+            const res = await axiosInstance.post("/api/examQuestionsByTypeAndYear", formdata);
+            if(res){
+                console.log(res.data.results)
+                setQuestionPaper(res.data.results.slice(0, 10))
+            }
+        }catch(e){
+            console.log('Query Error', e)
+        }
+    }
+
+    const handleViewDetails = (question) => {
+        viewQuestionsFromSamePaper(question);
+        setViewDetails(true)
+    }
+
+    const style = {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
+      };
 
     return (
         <div className="side-panel">
@@ -125,36 +169,72 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
                             >
                                 {x.question} <br></br> {x.examYear} <br></br>
                                 {`(${parseFloat(response.cosineSimilarity[i]).toFixed(2)})`}
-                                
-                                <div style={{display: 'flex'}}>
-                                <button onClick={f=>f}>Details</button>
-                                <button onClick={() => replaceQuestion(x.question)}>Replace</button>
-                                <button onClick={() => copyToClipboard(x.question)}>Copy</button>
+                                <div style={{ display: "flex" }}>
+                                    <button
+                                        onClick={(f) => {
+                                            handleViewDetails(x);
+                                        }}
+                                    >
+                                        Details
+                                    </button>
+                                    <button onClick={() => replaceQuestion(x.question)}>
+                                        Replace
+                                    </button>
+                                    <button onClick={() => copyToClipboard(x.question)}>
+                                        Copy
+                                    </button>
                                 </div>
                             </div>
                         ))}
                 </>
             )}
-            {tabValue === 1 && <>
+            {tabValue === 1 && (
+                <>
                     <button onClick={paraphraseQuestion}>Paraphrase</button>
                     {paraphraseResponse.map((x, i) => (
-                            <div
-                                key={i}
-                                style={{
-                                    border: "solid",
-                                    borderWidth: "2px",
-                                    padding: "2px",
-                                    margin: "10px",
-                                }}
-                            >
-                                {x}
-                                <div style={{display: 'flex'}}>
-                                <button onClick={() => replaceQuestion('TODO')}>Replace</button>
-                                <button onClick={() => copyToClipboard('TODO')}>Copy</button>
-                                </div>
+                        <div
+                            key={i}
+                            style={{
+                                border: "solid",
+                                borderWidth: "2px",
+                                padding: "2px",
+                                margin: "10px",
+                            }}
+                        >
+                            {x}
+                            <div style={{ display: "flex" }}>
+                                <button onClick={() => replaceQuestion("TODO")}>Replace</button>
+                                <button onClick={() => copyToClipboard("TODO")}>Copy</button>
                             </div>
-                        ))}
-                    </>}
+                        </div>
+                    ))}
+                </>
+            )}
+            {/* <Modal open={viewDetails} onClose={()=>console.log('close')}>Hello</Modal> */}
+            <Modal
+                open={viewDetails}
+                onClose={()=>setViewDetails(false)}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                
+                <Box sx={style}>
+                    <div  id="styleBar" style={{height: '80%', overflow: 'scroll'}}>
+                    <div className="csvTitle">Details</div>
+                    Examination Year: {questionPaper[0][4]}
+                    <hr />
+                    Examination Type: {questionPaper[0][5]}
+                    <hr />
+                    <hr />
+                    {questionPaper.map((x, i) => (
+                        <>
+                            <li key={x[0]}>{x[1]}</li>
+                            <hr />
+                        </>
+                    ))}
+                </div>
+                </Box>
+            </Modal>
             <br />
             {/* {responseText.map(x=>x.similarQuestion)} */}
         </div>
@@ -212,6 +292,7 @@ const Editor = () => {
                         replaceSelection={replaceSelection}
                         getSelectedText={getSelectedText}
                     />
+                    
                 </div>
             </div>
         </div>
