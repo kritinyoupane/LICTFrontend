@@ -7,6 +7,9 @@ import "react-quill/dist/quill.snow.css";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { Tab, Tabs } from "@mui/material";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import FindReplaceIcon from '@mui/icons-material/FindReplace';
 
 const modules = {
     toolbar: [
@@ -103,57 +106,65 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
     return (
         <div className="side-panel">
             <Tabs value={tabValue} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Similarity" />
-                <Tab label="Paraphrase" />
+                <Tab style={{backgroundColor:"#ffffff", color:"#7451f8"}} label="Similarity" />
+                <Tab style={{backgroundColor:"#ffffff", color:"#7451f8"}} label="Paraphrase" />
             </Tabs>{" "}
-            {/* {questions.map((x)=><li>{x}</li>) } */}
-            {questionText}
+            <div style={{padding:"10px", fontSize:"20px"}}>{questionText}</div>
             {tabValue === 0 && (
                 <>
-                    <button onClick={querySelection}>Query Selection</button>
-                    {response &&
+                    <button style={{backgroundColor: "#CFDCF3", color:"#000000" }} onClick={querySelection}>Query Selection</button><hr></hr>
+                    <div style={{overflow:"scroll", height:"70%"}}>{response &&
                         response.similarQuestion &&
                         response.similarQuestion.map((x, i) => (
                             <div
                                 key={x.id}
                                 style={{
-                                    border: "solid",
-                                    borderWidth: "2px",
                                     padding: "2px",
                                     margin: "10px",
+                                    borderRadius: "12px",
+                                    boxShadow: "0px 4px 6px #d3d3d3",
+                                    padding: "20px",
+                                    paddingBottom: "0px",
+                                    paddingTop: "30px"
                                 }}
                             >
-                                {x.question} <br></br> {x.examYear} <br></br>
-                                {`(${parseFloat(response.cosineSimilarity[i]).toFixed(2)})`}
-                                
-                                <div style={{display: 'flex'}}>
-                                <button onClick={f=>f}>Details</button>
-                                <button onClick={() => replaceQuestion(x.question)}>Replace</button>
-                                <button onClick={() => copyToClipboard(x.question)}>Copy</button>
+                                {x.question} <br></br>
+
+                                <div style={{color:"#7451f8"}}> {x.examYear} <br></br>
+                                {`(${parseFloat(response.cosineSimilarity[i]).toFixed(2)})`}</div>
+                                <div style={{display: 'flex', justifyContent: "space-between"}}>
+                                <button style={{width:"50px", color:"#7451f8", backgroundColor:"#ffffff"}} onClick={f=>f}><ReadMoreIcon className="icon"/></button>
+                                <button style={{width:"50px", color:"#7451f8", backgroundColor:"#ffffff"}} onClick={() => replaceQuestion(x.question)}><FindReplaceIcon className="icon"/></button>
+                                <button style={{width:"50px", color:"#7451f8", backgroundColor:"#ffffff"}} onClick={() => copyToClipboard(x.question)}><ContentCopyIcon className="icon"/></button>
                                 </div>
                             </div>
-                        ))}
+                        ))}</div>
                 </>
             )}
             {tabValue === 1 && <>
-                    <button onClick={paraphraseQuestion}>Paraphrase</button>
+                    <button style={{backgroundColor: "#CFDCF3", color:"#000000" }} onClick={paraphraseQuestion}>Paraphrase</button><hr></hr>
+                    <div style={{overflow:"scroll", height:"70%"}}>
                     {paraphraseResponse.map((x, i) => (
                             <div
                                 key={i}
                                 style={{
-                                    border: "solid",
-                                    borderWidth: "2px",
                                     padding: "2px",
                                     margin: "10px",
+                                    borderRadius: "12px",
+                                    boxShadow: "0px 4px 6px #d3d3d3",
+                                    padding: "20px",
+                                    paddingBottom: "0px",
+                                    paddingTop: "30px"
                                 }}
                             >
                                 {x}
-                                <div style={{display: 'flex'}}>
-                                <button onClick={() => replaceQuestion('TODO')}>Replace</button>
-                                <button onClick={() => copyToClipboard('TODO')}>Copy</button>
+                                <div style={{display: 'flex', justifyContent: "space-between"}}>
+                                <button style={{width:"50px", color:"#7451f8", backgroundColor:"#ffffff"}} onClick={() => replaceQuestion('TODO')}><FindReplaceIcon className="icon"/></button>
+                                <button style={{width:"50px", color:"#7451f8", backgroundColor:"#ffffff"}} onClick={() => copyToClipboard('TODO')}><ContentCopyIcon className="icon"/></button>
                                 </div>
                             </div>
                         ))}
+                    </div>
                     </>}
             <br />
             {/* {responseText.map(x=>x.similarQuestion)} */}

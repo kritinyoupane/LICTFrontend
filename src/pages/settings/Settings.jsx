@@ -8,6 +8,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import Sidebar from "../../Components/sidebar/Sidebar";
 import Navbar from "../../Components/navbar/Navbar";
 import "./Settings.scss";
+import EditIcon from '@mui/icons-material/Edit';
 
 const Settings = () => {
   const [serverStatus, setServerStatus] = useState(null);
@@ -19,7 +20,8 @@ const Settings = () => {
   const [array, setArray] = useState([]);
   const [csv, setCsv] = useState(null);
   const uploadRef = useRef(null);
-
+  const [examinationYear, setExaminationYear] = useState("");
+  const [examinationType, setExaminationType] = useState("");
   const fileReader = new FileReader();
 
   const handleOnChange = (e) => {
@@ -93,6 +95,8 @@ const Settings = () => {
     setEditToken(false)
     var formdata = new FormData();
     formdata.append("openAIToken", apiToken);
+    formdata.append('examinationType', examinationType);
+    formdata.append('examYear', examinationYear);
 
     const res = await axiosInstance.post("/auth/addOpenAIToken", formdata);
     if(res.statusText==="OK"){
@@ -110,10 +114,25 @@ const Settings = () => {
                   <div className="rightSection" id="styleBar">
                       <div className="titl">Questions</div>
                       <br></br>
-                      <div className="qsnOption">
-                          <div className="inputSec">
-                              <input></input>
-                              <input></input>
+                      <div style={{ color: "black", fontSize:"20px" }}>
+                          OpenAI API Token
+                          <br></br>
+                          {editToken ? (
+                                  <input
+                                      value={apiToken}
+                                      onChange={(e) => setApiToken(e.target.value)}
+                                      onBlur={handleTokenInputBlur}
+                                      autofocus
+                                  ></input>
+                          ) : (
+                              <div>{apiToken} 
+                              <button style={{width:"50px", color:"#7451f8", backgroundColor:"#ffffff"}} onClick={() => setEditToken(true)}><EditIcon className="icon"/></button></div>
+                          )}
+                      </div>
+                      <div className="qsnOption" style={{display:"flex", justifyContent:"space-between"}}>
+                          <div className="inputSec" style={{top:"46%", display:"flex", justifyContent:"space-between"}}>
+                              <input style={{width:"270px"}} placeholder="Examination Year" value={examinationYear} onChange = {(e)=>setExaminationYear(e.target.value)}></input>
+                              <input style={{width:"270px"}} placeholder="Examination Type" value={examinationType} onChange = {(e)=>setExaminationType(e.target.value)}></input>
                           </div>
                           <button className="qsnButton" onClick={() => uploadRef.current.click()}>
                               Select CSV
@@ -134,8 +153,12 @@ const Settings = () => {
                               Upload
                           </button>
                       </div>
+                      <br></br>      
+                      <br></br>
+                      <br></br>
+
                       <div className="qsnSection" id="styleBar">
-                          <div className="csvTitle">Title</div>
+                          <div className="csvTitle" style={{padding:"10px", fontSize:"20px", color:"#ffffff", fontWeight:"500"}}>Title</div>
                           {array.map((x, i) => (
                               <>
                                   <li key={i}>{x}</li>
@@ -143,27 +166,12 @@ const Settings = () => {
                               </>
                           ))}
                       </div>
-                      <div style={{ color: "black" }}>
-                          OpenAI API Token
-                          <br></br>
-                          {editToken ? (
-                                  <input
-                                      value={apiToken}
-                                      onChange={(e) => setApiToken(e.target.value)}
-                                      onBlur={handleTokenInputBlur}
-                                      autofocus
-                                  ></input>
-                          ) : (
-                              <div>{apiToken} 
-                              <button onClick={() => setEditToken(true)}>Edit</button></div>
-                          )}
-                      </div>
 
                       <table className="qsnTable">
                           {Object.values(serverStatus.questionUpdatingStatusMap).map((x, i) => (
                               <tr>
-                                  <td className="status">{x}</td>
-                                  {getIcon(i)}
+                                  <td style={{color:"#7451f8"}}className="status">{x}</td>
+                                  <div>{getIcon(i)}</div>
                               </tr>
                           ))}
                       </table>

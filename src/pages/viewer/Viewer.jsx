@@ -18,12 +18,11 @@ const Viewer = () => {
     return (
         <>
             <Layout>
-                <div  id="styleBar" style={{height: '80%', overflow: 'scroll'}}>
-                    <div className="csvTitle">Uploaded Questions</div>
+                <div  id="styleBar" style={{height: '80%', width: '70%', position:'absolute', right:'10%'}}>
+                    <div style={{ padding:'5px', paddingLeft:'30px', borderRadius:'7px', color:'white', weight:'600'}}className="csvTitle">Uploaded Questions</div>
                     {array.map((x, i) => (
                         <>
-                            <li key={x.id}>{x.question}</li>
-                            <hr />
+                            <li style={{padding:'10px'}} key={x.id}>{x.question}</li>
                         </>
                     ))}
                 </div>

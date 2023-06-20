@@ -49,7 +49,6 @@ const Sidebar = () => {
           </span>
           <p className="identity">{userInfo && userInfo.position ? userInfo.position : "Position"}</p>
         </div>
-        <hr/>
         <div className="center">
           <Link to="/notification" style={{ textDecoration: "none" }} className='navigation'>
             <li>
