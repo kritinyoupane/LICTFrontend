@@ -5,11 +5,11 @@
     .datatableTitle{
       width: 100%;
       font-size: 24px;
-      color: gray;
       margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+
   
       .link{
         text-decoration: none;
@@ -77,17 +77,15 @@
     .cellAction {
       display: flex;
       align-items: center;
-      gap: 15px;
   
       .approveButton {
         padding: 5px 8px;
         border-radius: 5px;
         color: darkblue;
-        border: 1px dotted rgba(0, 0, 139, 0.596);
         cursor: pointer;
       }
       .approveButton:hover {
-        background-color: teal;
+        background-color: #7451f8;
         color: white;
       }
       
@@ -95,12 +93,32 @@
         padding: 5px 8px;
         border-radius: 5px;
         color: crimson;
-        border: 1px dotted rgba(220, 20, 60, 0.6);
         cursor: pointer;
       }
       .rejectButton:hover {
-        background-color: red;
+        background-color: rgb(244, 115, 115);
         color: white;
       }
     }
+  }
+
+.MuiDataGrid-root{
+  border: 0px !important;
+}
+
+  .MuiDataGrid-row{
+    margin-top:10px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 5px #dcd2ff;
+  }
+
+  .css-z8fhq1-MuiDataGrid-columnHeaders{
+    border: 0px;
+    border-radius: 10px;
+    background-color: rgb(207, 220, 243);
+    box-shadow: 0px 2px 5px #dcd2ff;
+    font-size: medium;
+    font-weight: 800 !important;
+    color: #7451f8;
+    padding-left: 10px;
   }

@@ -1,23 +1,22 @@
 .sidebar{
-    flex:1;
-    padding: 10px;
-    border-right: 0.5px solid rgb(198, 195, 195);
-    min-height: 90vh;
-    background-color: white;
+    // border-right: 0.5px solid rgb(198, 195, 195);
+    min-height: 95vh;
+    background-color: rgb(207, 220, 243);
+    padding-top: 30px;
+
     .top{
         height: 50px;
+        display: flex;
         justify-content: center;
         display:inline-block;
         text-align: center;
         padding-left: 55px;
 
         .identity{
-            display: flexbox;
             text-align: center;
-            justify-content: center;
-            font-size: 13px;
+            font-size: 15px;
             font-weight: bold;
-            color: purple;
+            color: #7451f8;
         }
     }
     hr{
@@ -27,6 +26,9 @@
     .center{
         li{
         list-style:none;
+        padding-left: 30px;
+        margin: 20px;
+        margin-right: 0px;
         }
     }
     li{
@@ -34,16 +36,20 @@
         display:flex;
         align-items: center;
         padding: 18px;
+        border-radius: 30px 0px 0px 30px;
         cursor: pointer;
+        transition: background-color 0.5s;
 
-        &:hover{
-            background-color: rgb(207, 220, 243);
+        &:hover, &:active{
+            background-color: white;
+            border-radius: 30px 0px 0px 30px;
         }
 
         .icon{
             font-size: 18px;
             color: #7451f8;
         }
+
         span{
             font-size: 15px;
             font-weight: 600;
@@ -58,4 +64,13 @@
             cursor:pointer;
     }
     }
+}
+
+logoSection{
+    position: absolute;
+    height:20%;
+    bottom: 0%;
+    width:15%;
+    display: flex;
+    justify-content: center;
 }

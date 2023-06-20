@@ -22,9 +22,9 @@ const Navbar = () => {
           </span>}
           {!isLogin && 
           <div>
-            <a href="/" style={{ textDecoration: "none" }}>About</a>
-            <a href="/login" style={{ textDecoration: "none" }}>Log In</a>
-            <a href="/registration" style={{ textDecoration: "none" }}>Sign Up</a>
+            <a href="/" className='navBtn'>About</a>
+            <a href="/login" className='navBtn'>Log In</a>
+            <a href="/registration" className='navBtn'>Sign Up</a>
           </div>}
         </div>
       </div> 

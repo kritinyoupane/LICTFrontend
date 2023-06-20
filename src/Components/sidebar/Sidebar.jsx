@@ -8,6 +8,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 import Brightness5Icon from '@mui/icons-material/Brightness5';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import EventNoteIcon from '@mui/icons-material/EventNote';
 import ReactRoundedImage from "react-rounded-image";
 import MyPhoto from "../../images/re.jpeg";
 import { DarkModeContext } from "../../context/DarkModeContext";
@@ -15,6 +16,8 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
 import axiosInstance from "../../helper/Axios";
+import { AiOutlineFile } from 'react-icons/ai';
+import { FaSearch } from 'react-icons/fa';
 
 
 const Sidebar = () => {
@@ -24,7 +27,7 @@ const Sidebar = () => {
 
   const logout = async () => {
     const response = await axiosInstance.post("/auth/logout");
-    console.log(response.data)
+    console.log(response)
     clearUserInfo();
     navigate("/")
   };
@@ -48,20 +51,10 @@ const Sidebar = () => {
         </div>
         <hr/>
         <div className="center">
-          <Link to="/home" style={{ textDecoration: "none" }}>
-            <li>
-            <DashboardIcon className="icon"/>
-              <span>Dashboard</span>
-            </li>
-          </Link>
-          <li>
-            <ArrowDropDownOutlinedIcon className="icon"/>
-            <span>Model Selection</span>
-          </li>
-          <Link to="/notification" style={{ textDecoration: "none" }}>
+          <Link to="/notification" style={{ textDecoration: "none" }} className='navigation'>
             <li>
               <NotificationsActiveOutlinedIcon className="icon"/>
-              <span>Notification</span>
+              <span>User Request</span>
             </li>
           </Link>
           <Link to="/users" style={{ textDecoration: "none" }}>
@@ -70,10 +63,24 @@ const Sidebar = () => {
               <span>Users</span>
             </li>
           </Link>
+          <Link to="/editor" style={{ textDecoration: "none" }}>
+            <li>
+              <EventNoteIcon className="icon"/>
+              <span>Editor</span>
+            </li>
+          </Link>
+          <Link to="/viewer" style={{ textDecoration: "none" }}>
+            <li>
+              <EventNoteIcon className="icon"/>
+              <span>Viewer</span>
+            </li>
+          </Link>
+          <Link to="/settings" style={{ textDecoration: "none" }}>
           <li>
             <UploadFileOutlinedIcon className="icon"/>
-            <span>Upload</span>
+            <span>Settings</span>
           </li>
+          </Link>
           <Link to="/profile" style={{ textDecoration: "none" }}>
             <li>
               <AccountCircleOutlinedIcon className="icon"/>
@@ -84,15 +91,19 @@ const Sidebar = () => {
             <LogoutOutlinedIcon  className="icon"/>
             <span>Logout</span>
           </li>
+          <logoSection>
+          <AiOutlineFile className="file" size={100}/>
+          <FaSearch className="searching" size={30}/>
+          </logoSection>
         </div>
-        <div className="bottom">
+        {/* <div className="bottom">
           <li>
             <Brightness5Icon className ="coloroptions" onClick={()=>dispatch({type: "LIGHT"})}/>
           </li>
           <li>
             <DarkModeIcon className ="coloroptions"onClick={()=>dispatch({type: "DARK"})}/>
           </li>
-        </div>
+        </div> */}
     </div>
   )
 }

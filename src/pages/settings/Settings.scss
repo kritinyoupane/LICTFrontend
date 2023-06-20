@@ -1,0 +1,207 @@
+.home{
+    display: flex;
+
+    .homecontainer{
+        flex: 6;
+    }
+}
+
+.topLeft .title{
+  position: absolute;
+  top:0%;
+  width: 93%;
+  margin: 0px;
+}
+
+.titl{
+  color:#7451f8;
+  font-size: xx-large;
+}
+
+.rightSection{
+    position: absolute;
+    width:80%;
+    color: aliceblue;
+    margin: 15px;
+    margin-left: 50px;
+    padding: 30px;
+    border-radius: 30px 30px 30px 30px;
+}
+
+#styleBar::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+#styleBar::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+  border-radius: 10px;
+}
+
+#styleBar::-webkit-scrollbar-thumb
+{
+	background-color: #7451f8;
+    border-radius: 10px;
+}
+
+
+.qsnButton{
+    margin-left: 50px;
+    background-color: #7451f8 !important;
+    color: aliceblue;
+    border-radius: 3px;
+    width:100px;
+    border: none;
+}
+
+.qsnButton:hover{
+    box-shadow: 0px 0px 10px rgba($color: #ffffff, $alpha: 1);
+}
+
+.qsnButton:active{
+    box-shadow: 4px 4px 6px 0 rgba(255,255,255,.5),
+    inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+}
+
+table{
+  background-color: #ffffff;
+  color: #7451f8;
+  border-radius: 10px;
+  position: relative;
+  width: 50%;
+  margin-top: 30px;
+  padding: 20px;
+  justify-content: space-around;
+}
+
+td{
+  padding-top: 15px;
+  padding-bottom: 5px;
+  box-shadow: 0px 2px 3px #ac97f8;
+}
+
+tr svg{
+  width: 100%;
+}
+
+.spin {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    border-top-color: #7451f8;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .qsnButton{
+    margin-top: 50px;
+    padding: 3px 15px 3px 15px;
+    border-radius: 50px;
+  }
+
+  .qsnSection{
+    position: absolute;
+    padding: 0px;
+    background-color: none;
+    width: 30%;
+    height: 120%;
+    top:10%;
+    right:5%;
+    overflow-y: scroll;
+    display: inline-block;
+    box-shadow: 0px 0px 10px #ac97f8;
+    border-radius: 5px;
+  }
+
+  .qsnSection li{
+    color:#000000;
+    padding: 5px;
+    opacity: 100%;
+  }
+
+  .optn{
+    position: relative;
+    left:10%;
+  }
+
+  obj1, obj2, obj4{
+    background: linear-gradient(#7451f8, #ac97f8);
+    position: absolute;
+    height:50px;
+    width:50px;
+    border-radius: 25px;
+    opacity: 30%;
+    top:12%;
+    right:15%;
+    box-shadow: 2px 0px 10px #ffffff;
+  }
+
+  obj2{
+    height:30px;
+    width: 30px;
+    top:10%;
+    right:7%;
+    opacity: 50%;
+  }
+
+  obj4{
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    z-index: -1;
+    right:15%;
+    top:15%;
+    box-shadow: 0px 0px 10px #7451f8;
+    opacity: 20%;
+  }
+
+  td{
+    padding: 0px 15px 0px 15px;
+  }
+  .state:hover{
+    background-color: #d7d7d7;
+  }
+
+  .csvTitle{
+    color: black;
+    font-size: large;
+    background-color: #ac97f8;
+    padding-left: 10px;
+  }
+
+  .qsnOption{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    width:50%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .inputSec{
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    top:120%;
+  }
+
+  .inputSec input{
+    border: 0px;
+    box-shadow: 0px 0px 5px #ac97f8;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-around;
+  }

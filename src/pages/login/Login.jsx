@@ -5,6 +5,8 @@ import axiosInstance from "../../helper/Axios";
 import AuthContext from "../../context/AuthContext";
 import {userInfoTransform} from "../../helper/dataTransform"
 import Navbar from "../../Components/navbar/Navbar";
+import { AiOutlineFile } from 'react-icons/ai';
+import { FaSearch } from 'react-icons/fa';
 
 
 const Login = () => {
@@ -13,7 +15,7 @@ const Login = () => {
   const [error, setError] = useState("")
   const {setUserInfo} = useContext(AuthContext)
   const navigate = useNavigate()
-  const [redirectLink, setRedirectLink] = useState("/home")
+  const [redirectLink, setRedirectLink] = useState("/notification")
 
   useEffect(()=>{
     const href = window.location.href;
@@ -26,6 +28,7 @@ const Login = () => {
 
   const handleLogin = async(e) => {
     e.preventDefault();
+    console.log("hello", username, password)
     if (username.trim() && password) {
       const body = { username: username.trim(), password };
       const response = await axiosInstance.post("/auth/login", body);
@@ -40,37 +43,54 @@ const Login = () => {
       }
     }
   }
-
-  return (
-    <div className="login">
-      <Navbar/>
-      <div className="loginContainer">
-        <div className="top">
-          <h1>Admin pannel</h1>
-        </div>
-        <hr>
-        </hr>
-          <div className="bottom">
-            <form>
-              {error}
-              <div className="formInput">
-                <label>Username</label>
-                <input type="text" placeholder="john_doe" value={username} onChange={(e) => setUsername(e.target.value)}/>
-              </div>
-              <div className="formInput">
-                <label>Password</label>
-                <input type="password" placeholder="" value={password} onChange={(e) => setPassword(e.target.value)}/>
-              </div>
-              <button onClick={handleLogin}>Log In</button>
-              <span> Or </span>
-              <Link to="/registration" style={{ textDecoration: "none" }}>
-              <button>Sign Up</button>
-              </Link>
-            </form> 
+  return(
+    <div>
+      <div className="decor">
+            <obj1></obj1>
+            <obj2></obj2>
+            <obj3></obj3>
+            <obj4></obj4>
+            <obj5></obj5>
           </div>
-        </div>
-      </div>
+          <div className='loginBox'>
+            <div className='loginSection'>
+              <div className='topic'>
+                Login
+              </div>
+              <div className='loginDetails'>
+                <div className='heading'>
+                  Username
+                </div>
+                <input className='inputSection' id='name' type='name' placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)}>  
+                </input>
+
+                <div className='heading'>
+                  Password
+                </div>
+                <input className='inputSection'id='password' type='password' value={password} onChange={(e) => setPassword(e.target.value)}>  
+                </input>
+              </div>
+              <div className='buttons'>
+                <button className='login' onClick={handleLogin}>Login</button>
+                <button className="signin" >Signup</button>
+              </div>
+            </div>
+            <div className='section'>
+            <div className='logoSection'>
+            <AiOutlineFile className="file" size={100}/>
+            <FaSearch className="searching" size={30}/>
+            </div>
+            <div className='title'>
+              Q Similarity
+            </div><br></br>
+            <div className='quote'>
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias, architecto placeat ipsa hic accusamus dignissimos ipsum consequuntur quo, aliquid nam ducimus delectus atque ipsam facilis non beatae magni culpa laudantium!
+            </div>
+            </div>
+            </div>
+    </div>
   )
+
 }
 
 export default Login;

@@ -1,16 +1,27 @@
 .navbarContent{
     height: 50px;
     width: 100%;
-    border-bottom: 0.5px solid rgb(231, 228, 228);
     display:flex;
     align-items: center;
-    background-color: aliceblue;
     font-size: 14px;
-    color: gray;
     justify-content: right;
     margin-right: 25px;
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(76, 75, 75, 0.47);
-    box-shadow: 2px 4px 5px 1px rgb(225, 220, 220, 0.47);
+
+    .navBtn{
+      text-decoration: none;
+      margin:5px;
+      color: #7451f8;
+      font-weight: 600;
+      padding: 5px 15px 5px 15px !important;
+      border-radius: 5px;
+      box-shadow: 2px 2px 3px #b5bfb6;
+    }
+
+    .navBtn:hover{
+      background-color: #ac97f8 !important;
+      box-shadow: none;
+      box-shadow: inset 2px 2px 3px #ffffff;
+    }
 
     .wrapper{
         display:flex;

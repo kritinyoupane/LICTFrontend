@@ -3,7 +3,6 @@ import About from "./pages/aboutus/About"
 import Login from "./pages/login/Login";
 import Registration from "./pages/registration/Registration"
 import New from "./pages/new/New";
-import Single from "./pages/single/Single";
 import List from "./pages/list/List";
 import Notification from "./pages/notification/Notification";
 import "./style/dark.scss"
@@ -19,6 +18,9 @@ import PrivateRoute from "./Components/PrivateRoute";
 import AccessDenied from "./pages/accessDenied/AccessDenied";
 import Editor from "./pages/editor/Editor";
 import NotFound from "./pages/NotFound/NotFound";
+import Profile from "./pages/profile/Profile";
+import Settings from "./pages/settings/Settings"
+import Viewer from "./pages/viewer/Viewer";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -29,21 +31,23 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-          <Route index element={<About/>}/>
+          <Route index element={<Login/>}/>
           <Route path ="login" element={<Login/>}/>
           <Route path ="home" element={<Home/>}/>
           <Route path ="registration" element={<Registration/>}/>
-          <Route path ="notification" element={<PrivateRoute onlyAdmin><Notification/></PrivateRoute>}/>
+          <Route path ="notification" element={<PrivateRoute ><Notification/></PrivateRoute>}/>
+          <Route path="settings" element={<PrivateRoute> <Settings /> </PrivateRoute>} />
           <Route path ="users">
             <Route index element={<PrivateRoute><List/></PrivateRoute>}/>
             <Route path="new" element={<New/>}/>
-            <Route path=":userId" element={<Single/>}/>
+            <Route path=":userId" element={<PrivateRoute><Profile /></PrivateRoute> }/>
           </Route>
-          <Route path="profile" element={<PrivateRoute><Single/></PrivateRoute>}/>
+          <Route path="profile" element={<PrivateRoute><Profile/></PrivateRoute>}/>
           </Route>
           <Route path="accessDenied" element={<AccessDenied />}/>
 
           <Route path="editor" element={<Editor />}/>
+          <Route path="viewer" element={<Viewer />}/>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
