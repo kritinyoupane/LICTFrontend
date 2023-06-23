@@ -81,7 +81,8 @@ const Settings = () => {
     e.preventDefault();
     var formdata = new FormData();
     formdata.append("file", csv);
-
+    formdata.append("examinationType", examinationType);
+    formdata.append("examYear", examinationYear);
     const res = await axiosInstance.post("/api/uploadData", formdata);
     if(res.statusText==="OK"){
       window.alert("Questions uploaded")
@@ -95,8 +96,6 @@ const Settings = () => {
     setEditToken(false)
     var formdata = new FormData();
     formdata.append("openAIToken", apiToken);
-    formdata.append('examinationType', examinationType);
-    formdata.append('examYear', examinationYear);
 
     const res = await axiosInstance.post("/auth/addOpenAIToken", formdata);
     if(res.statusText==="OK"){
@@ -114,11 +113,11 @@ const Settings = () => {
                   <div className="rightSection" id="styleBar">
                       <div className="titl">Questions</div>
                       <br></br>
-                      <div style={{ color: "black", fontSize:"20px" }}>
+                      <div style={{ color: "black", fontSize:"20px"}}>
                           OpenAI API Token
                           <br></br>
                           {editToken ? (
-                                  <input
+                                  <input style={{padding:"7px", paddingLeft:"15px", width:"350px", borderRadius:"20px", border:"2px solid #cfdcf3", marginTop:"10px"}}
                                       value={apiToken}
                                       onChange={(e) => setApiToken(e.target.value)}
                                       onBlur={handleTokenInputBlur}
@@ -131,7 +130,7 @@ const Settings = () => {
                       </div>
                       <div className="qsnOption" style={{display:"flex", justifyContent:"space-between"}}>
                           <div className="inputSec" style={{top:"46%", display:"flex", justifyContent:"space-between"}}>
-                              <input style={{width:"270px"}} placeholder="Examination Year" value={examinationYear} onChange = {(e)=>setExaminationYear(e.target.value)}></input>
+                              <input style={{width:"270px"}} placeholder="Examination Year (yyyy-mm-dd)" value={examinationYear} onChange = {(e)=>setExaminationYear(e.target.value)}></input>
                               <input style={{width:"270px"}} placeholder="Examination Type" value={examinationType} onChange = {(e)=>setExaminationType(e.target.value)}></input>
                           </div>
                           <button className="qsnButton" onClick={() => uploadRef.current.click()}>
