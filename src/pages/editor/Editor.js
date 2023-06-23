@@ -19,36 +19,57 @@ const modules = {
         ["bold", "italic", "underline", "strike"],
         [{ color: [] }, { background: [] }],
         [{ script: "sub" }, { script: "super" }],
-        ["blockquote", "code-block"],
         [{ list: "ordered" }, { list: "bullet" }],
-        [{ indent: "-1" }, { indent: "+1" }, { align: [] }],
-        ["link", "image", "video"],
-        ["clean"],
     ],
+};
+
+const StyledModal = ({open, onClose, children}) => {
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "70%",
+        height: "70%",
+
+        bgcolor: "background.paper",
+        border: "2px solid #000",
+        boxShadow: 24,
+        p: 6,
+    };
+    return (
+        <Modal
+            open={open}
+            onClose={onClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+        >
+            <Box sx={style}>{children}</Box>
+        </Modal>
+    );
 };
 
 const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
     const [response, setResponse] = useState([]);
-    const [paraphraseResponse, setParaphraseResponse] = useState([
-    ]);
+    const [paraphraseResponse, setParaphraseResponse] = useState([]);
     const [questionText, setQuestionText] = useState("");
     const [tabValue, setTabValue] = useState(0);
     const [viewDetails, setViewDetails] = useState(false);
     const [questionPaper, setQuestionPaper] = useState([]);
-    const [apiToken, setApiToken] = useState('');
+    const [apiToken, setApiToken] = useState("");
 
     const handleChange = (event, newValue) => {
         setTabValue(newValue);
     };
     useEffect(() => {
         (async () => {
-          const tokenResponse = await axiosInstance.get('auth/getOpenAIToken');
-          if(tokenResponse && tokenResponse.statusText ==='OK'){
-            console.log('API', tokenResponse.data.openAIToken)
-            setApiToken(tokenResponse.data.openAIToken)
-          }
+            const tokenResponse = await axiosInstance.get("auth/getOpenAIToken");
+            if (tokenResponse && tokenResponse.statusText === "OK") {
+                console.log("API", tokenResponse.data.openAIToken);
+                setApiToken(tokenResponse.data.openAIToken);
+            }
         })();
-      }, []);
+    }, []);
 
     const paraphraseQuestion = async () => {
         try {
@@ -56,7 +77,7 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
             if (!textToParaphrase) {
                 textToParaphrase = questionText;
             }
-            const noOfResult=4
+            const noOfResult = 4;
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
             myHeaders.append(
@@ -84,11 +105,11 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
 
             const result = await fetch("https://api.openai.com/v1/completions", requestOptions);
             const json = await result.json();
-            setParaphraseResponse(json.choices.map(x=>x.text))
+            setParaphraseResponse(json.choices.map((x) => x.text));
 
             // TODO Get API Key from backend, call to OPENAI, Store results in paraphraseResponse
         } catch (e) {
-            window.alert("ERROR: Details in console")
+            window.alert("ERROR: Details in console");
             console.log("click on editor");
         }
     };
@@ -99,7 +120,7 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
     //     myHeaders.append("Authorization", "Bearer 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");
     //     const prompt = `Paraphrase "${query} in the question format"`
     //     // const token_length = Math.min( parseInt( query.length /4 +10), 128)
-  
+
     //     var raw = JSON.stringify({
     //         "model": "text-davinci-003",
     //         "prompt": prompt,
@@ -107,14 +128,14 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
     //         "temperature": 0.99,
     //         "n": noOfResult
     //     });
-  
+
     //     var requestOptions = {
     //         method: 'POST',
     //         headers: myHeaders,
     //         body: raw,
     //         redirect: 'follow'
     //     };
-  
+
     //     const result = await fetch("https://api.openai.com/v1/completions", requestOptions);
     //     const json = await result.json()
     //     return json;
@@ -200,20 +221,6 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
     const handleViewDetails = (question) => {
         viewQuestionsFromSamePaper(question);
         setViewDetails(true);
-    };
-
-    const style = {
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        width: '70%',
-        height: '70%',
-
-        bgcolor: "background.paper",
-        border: "2px solid #000",
-        boxShadow: 24,
-        p: 6,
     };
 
     return (
@@ -344,20 +351,23 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
                     </div>
                 </>
             )}
-            <Modal
+            <StyledModal
                 open={viewDetails}
                 onClose={() => setViewDetails(false)}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
-                    {console.clear()}
-                    Author: {questionPaper && questionPaper[0] && `${questionPaper[0].user.first_name} ${questionPaper[0].user.last_name}`}
+                    Author:{" "}
+                    {questionPaper &&
+                        questionPaper[0] &&
+                        `${questionPaper[0].user.first_name} ${questionPaper[0].user.last_name}`}
                     <hr />
                     {/* Examination Year: {questionPaper && questionPaper[0] && questionPaper[0][4]} */}
-                    Examination Year: {questionPaper && questionPaper[0] && questionPaper[0].examYear}
+                    Examination Year:{" "}
+                    {questionPaper && questionPaper[0] && questionPaper[0].examYear}
                     <hr />
-                    Examination Type: {questionPaper && questionPaper[0] && questionPaper[0].examinationType}
+                    Examination Type:{" "}
+                    {questionPaper && questionPaper[0] && questionPaper[0].examinationType}
                     <hr />
                     <br />
                     <br />
@@ -374,8 +384,7 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
                             </>
                         ))}
                     </div>
-                </Box>
-            </Modal>
+            </StyledModal>
             <br />
             {/* {responseText.map(x=>x.similarQuestion)} */}
         </div>
@@ -384,6 +393,11 @@ const SidePanel = ({ value, getSelectedText, replaceSelection, setText }) => {
 
 const Editor = () => {
     const [value, setValue] = useState("");
+    const [examinationType, setExaminationType] = useState('')
+    const [examinationYear, setExaminationYear] = useState('')
+    const [openSave, setOpenSave] = useState(false)
+    let questionArray = value.split("\n\n").filter(x=>!["\n", ""].includes(x) );
+    console.log(questionArray)
 
     const editorRef = useRef();
 
@@ -415,18 +429,43 @@ const Editor = () => {
         editor.setText(newText);
     };
 
+    const handleUploadToDatabase = () => {
+        /// TODO
+        
+    };
+
     return (
         <div className="home">
             <Sidebar />
             <div className="homecontainer">
                 <Navbar />
                 <div className="main">
+                    <button id="saveButton" onClick={() => setOpenSave(true)}>
+                        Upload to Database
+                    </button>
+                    <StyledModal open={openSave} onClose={()=>setOpenSave(false)}>
+                        <h2>Upload Questions to Database</h2>
+                        <label htmlFor="examType" >Examination Type</label><br />
+                        <input id='examType' value={examinationType} onChange={(e)=>setExaminationType(e.target.value)} />
+                        <br />
+                        <label htmlFor="examYear" >Examination Year</label><br />
+                        <input id='examYear'  value={examinationYear} onChange={(e)=>setExaminationYear(e.target.value)} />
+                        <br />
+                        <br />
+                        Questions
+
+                        {questionArray.map((question, i) => <li key={i}>{question}</li>)}
+                        <br />
+
+                        <button onClick={handleUploadToDatabase}>Upload</button>
+                    </StyledModal>
                     <ReactQuill
                         ref={editorRef}
                         theme="snow"
                         modules={modules}
                         onChange={handleEditorUpdate}
                     />
+
                     <SidePanel
                         value={value}
                         setText={setText}
